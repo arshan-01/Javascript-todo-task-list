@@ -1,162 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Bootstrap CSS -->
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-        />
-        <!-- Font Awesome CSS -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-            integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
-        <link
-            rel="stylesheet"
-            href="path/to/font-awesome/css/font-awesome.min.css"
-        />
-        <link rel="stylesheet" href="style.css" />
-        <title>Todo task list</title>
-    </head>
-    <body>
-        <div class="row d-flex justify-content-center container">
-            <div class="col-sm-12 col-md-8">
-                <div class="card-hover-shadow-2x mb-3 card">
-                    <div class="card-header-tab card-header">
-                        <div
-                            class="card-header-title font-size-lg text-capitalize font-weight-normal"
-                        >
-                            <i class="fa fa-tasks"></i>&nbsp;Task Lists
-                        </div>
-                    </div>
-                    <div class="scroll-area-sm">
-                        <perfect-scrollbar class="ps-show-limits">
-                            <div
-                                style="position: static"
-                                class="ps ps--active-y"
-                            >
-                                <div class="ps-content">
-                                    <ul
-                                        class="list-group list-group-flush"
-                                        id="task-list"
-                                    ></ul>
-                                </div>
-                            </div>
-                        </perfect-scrollbar>
-                    </div>
-                    <!-- Modal -->
-                    <div
-                        class="modal fade bd-example-modal container"
-                        data-backdrop="static"
-                        id="exampleModal"
-                        tabindex="-1"
-                        role="dialog"
-                        aria-labelledby="exampleModalLabel"
-                        aria-hidden="true"
-                    >
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5
-                                        class="modal-title"
-                                        id="exampleModalLabel"
-                                    >
-                                        Task Detail
-                                    </h5>
-                                    <i
-                                        class="bi bi-x-lg close btn"
-                                        data-dismiss="modal"
-                                        aria-label="Close"
-                                    ></i>
-                                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Todo task list</title>
+</head>
+<body>
+  <div class="row d-flex justify-content-center container">
+    <div class="col-sm-12 col-md-8">
+      <div class="card-hover-shadow-2x mb-3 card">
+        <div class="card-header-tab card-header">
+          <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i
+              class="fa fa-tasks"></i>&nbsp;Task Lists</div>
+          
+        </div>
+        <div class="scroll-area-sm " >
+          <perfect-scrollbar class="ps-show-limits">
+            <div style="position: static;" class="ps ps--active-y">
+              <div class="ps-content">
+                <ul class=" list-group list-group-flush" id="task-list">
+                 
+                </ul>
+              </div>
+              
+            </div>
+          </perfect-scrollbar>
+        </div>
+        <!-- Modal -->
+  <div class="modal fade bd-example-modal container" data-backdrop="static" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Task Detail</h5>
+          <i class="bi bi-x-lg close btn"  data-dismiss="modal" aria-label="Close"></i>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button> -->
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Product section-->
-                                    <form id="form">
-                                        <div class="form-group">
-                                            <label
-                                                for="title-input"
-                                                class="col-form-label"
-                                                >Task</label
-                                            >
-                                            <input
-                                                type="text"
-                                                class="form-control"
-                                                id="title-input"
-                                            />
-                                            <div
-                                                id="msg"
-                                                class="text-danger"
-                                            ></div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label
-                                                for="datetime"
-                                                class="col-form-label"
-                                                >Due Date</label
-                                            >
-                                            <input
-                                                class="form-control"
-                                                type="datetime-local"
-                                                id="datetime"
-                                            />
-                                            <!-- <textarea ></textarea> -->
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button
-                                                type="button"
-                                                class="btn btn-secondary"
-                                                id="close-modal"
-                                                data-dismiss="modal"
-                                            >
-                                                Close
-                                            </button>
-                                            <button
-                                                type="submit"
-                                                class="btn btn-primary"
-                                                id="add"
-                                            >
-                                                Save
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="d-flex text-right card-footer justify-content-end gap-5"
-                    >
-                        <!-- <button class="mr-2 btn btn-link btn-sm">Cancel</button> -->
-                        <button
-                            class="btn btn-primary"
-                            data-toggle="modal"
-                            data-target="#exampleModal"
-                        >
-                            Add Task
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
-        <script src="script.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+        <div class="modal-body">
+            <!-- Product section-->
+            <form id="form">
+              <div class="form-group">
+                <label for="title-input" class="col-form-label">Task</label>
+                <input type="text" class="form-control" id="title-input">
+                <div id="msg" class="text-danger"></div>
+              </div>
+              <div class="form-group">
+                <label for="datetime" class="col-form-label">Due Date</label>
+                <input class="form-control" type="datetime-local" id="datetime">
+                <!-- <textarea ></textarea> -->
+              </div>
+              <div class="modal-footer">
+                <button onclick="resetForm ()" id="close-modal" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="add">Save</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="d-flex text-right card-footer justify-content-end gap-5">
+          <!-- <button class="mr-2 btn btn-link btn-sm">Cancel</button> -->
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Task</button></div>
+      </div>
+    </div>
+    </div>
+    <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</body>
 </html>

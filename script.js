@@ -103,7 +103,7 @@ let resetForm = () => {
 let deleteTask = (e) => {
     console.log(e.id);
     if (confirm("Want to delete?")) {
-        // alert("Deleted")
+        alert("Deleted")
         todo = todo.filter((x) => x.id !== e.id);
     }
 
@@ -120,9 +120,6 @@ let editTask = (e) => {
         title.value = search.title;
         datetime.value = search.datetime;
     }
-
-    // localStorage.setItem("data" , JSON.stringify(todo))
-    // createTask();
 };
 (() => {
     todo = JSON.parse(localStorage.getItem("data")) || [];
